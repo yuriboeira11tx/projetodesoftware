@@ -1,0 +1,50 @@
+<!-- {% include "core/partials/head.html" %} -->
+
+<body>
+
+    <div class="header">
+        <a class="logo" href="">LOGO</a>
+        <a href="">REGISTRAR OCORRÊNCIA</a>
+    </div>
+    <div class="container">
+        <div class="container-aside">
+
+            <aside>
+                <form class="filtros" action="">
+                    <input type="text" id="filtros" name="filtros" placeholder="filtros">
+                    <input type="submit" id="pesquisar" name="pesquisar" value="pesquisar">
+                </form>
+
+                <form class="relatoriogeral" action="">
+                    <input type="submit" name="relatorio" id="relatorio" value="gerar relatorio geral">
+                </form>
+
+            </aside>
+        </div>
+
+        <div class="containerocorrencia">
+            <!-- {% for ocorrencias in ocorrencia %}  -->
+            <div class="ocorrencia">
+                <img src="https://placehold.co/400?text=Map+Costa&font=roboto" alt="" class="maptemp">
+                <img src="https://placehold.co/400?text=imagem+Animal&font=roboto" alt="" class="maptemp">
+                <!-- {% comment %} <img src={{ocorrencias.imagens}} alt="foto animal"> {% endcomment %} -->
+                <div class="test">
+                    <ul>
+                        <li>Espécie: {{ocorrencias.especie}}</li>
+                        <li>Cidade: </li>
+                        <li>Data: {{ocorrencias.data}}</li>
+                        <li>Mergulhador: {{ocorrencias.mergulhador}} </li>
+                    </ul>
+                </div>
+                <form action="">
+                    <input type="submit" id="expandir" name="expandir" value="EXPANDIR">
+                </form>
+            </div>
+            <!-- {% endfor %} -->
+        </div>
+
+    </div>
+
+</body>
+
+</html>
