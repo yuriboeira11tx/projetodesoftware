@@ -13,7 +13,7 @@
         </div>      
         <div class="login-inputs">
             <img src="img/icon_mail.png" alt="icon_user">
-            <input type="text" placeholder=" Email">
+            <input type="email" placeholder=" Email">
         </div>    
         <div class="login-inputs">
             <img src="img/icon_lock.png" alt="icon_user">
@@ -24,14 +24,19 @@
             <p><a href="recuperar-conta.html" target="_blank">Esqueceu a senha?</a></p>
         </div>
         <div class="login-buttons">
-            <button type="button" class="btn-register"><strong>REGISTRAR</strong></button>
-            <button type="button"><strong>LOGIN</strong></button>
+            <button type="button" class="btn-register" name="btn-register" id="btn-register"><strong>REGISTRAR</strong></button>
+            <button type="button" name="btn-login" id="btn-login"><strong>LOGIN</strong></button>
         </div>    
     </div>
     <script>
         var btnLogin = document.querySelector('#btn-login');
         btnLogin.onclick = function() {     
             //Função de validar autenticação   
+        };
+
+        var btnRegister = document.querySelector('#btn-register');
+        btnRegister.onclick = function() {     
+            window.location.href = 'index.html';  
         };
     </script>
 </body>
