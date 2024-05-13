@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-img">
+            <img src="img/user.png" alt="icon_user">
+        </div>      
+        <div class="login-inputs">
+            <img src="img/icon_mail.png" alt="icon_user">
+            <input type="text" placeholder=" Email">
+        </div>    
+        <div class="login-inputs">
+            <img src="img/icon_lock.png" alt="icon_user">
+            <input type="password" placeholder=" Senha">
+        </div>
+        <div class="login-others">
+            <p><a href="termos-servicos.html" target="_blank">Termos de serviço</a></p>
+            <p><a href="recuperar-conta.html" target="_blank">Esqueceu a senha?</a></p>
+        </div>
+        <div class="login-buttons">
+            <button type="button" class="btn-register"><strong>REGISTRAR</strong></button>
+            <button type="button"><strong>LOGIN</strong></button>
+        </div>    
+    </div>
+    <script>
+        var btnLogin = document.querySelector('#btn-login');
+        btnLogin.onclick = function() {     
+            //Função de validar autenticação   
+        };
+    </script>
+</body>
+</html>

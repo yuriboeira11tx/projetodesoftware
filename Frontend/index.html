@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+<body>
+    <div class="aut-container">
+        <div class="aut-signup">
+            <p>Já possui conta?</p>
+            <p>Acesse agora</p>
+            <button type="button" name="btn-login" id="btn-login"><strong>ENTRAR</strong></button>
+        </div>
+        <div class="aut-create">
+            <p><strong>CRIE SUA CONTA</strong></p>
+            <div class="aut-create-inputs">
+                <img src="img/icon_user.png" alt="icon_user">
+                <input type="text" placeholder=" Nome">
+            </div>
+            <div class="aut-create-inputs">
+                <img src="img/icon_mail.png" alt="icon_user">
+                <input type="text" placeholder=" Email">
+            </div>    
+            <div class="aut-create-inputs">
+                <img src="img/icon_lock.png" alt="icon_user">
+                <input type="password" placeholder=" Senha">
+            </div>        
+            <div class="aut-create-type">
+                <input type="radio" id="type-create" name="type-create" class="type-create">
+                <label for="type-create"><strong>Mergulhador</strong></label>
+                <input type="radio" id="type-create" name="type-create" class="type-create">
+                <label for="type-create"><strong>Biólogo</strong></label>
+            </div>
+            <button type="button" name="btn-register" id="btn-register"><strong>CADASTRAR</strong></button>
+        </div>
+    </div>
+    <script>
+        var btnRegister = document.querySelector('#btn-register');
+        btnRegister.onclick = function() {         
+        };
+
+        var btnLogin = document.querySelector('#btn-login');
+        btnLogin.onclick = function() {
+            window.location.href = 'login.html';            
+        };
+    </script>
+</body>
+</html>

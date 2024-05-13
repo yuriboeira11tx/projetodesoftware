@@ -11,9 +11,9 @@ body {
 .aut-container {   
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 40%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 100px;
+    margin-top: 10%;
     border: 1px solid #4B88FF;
     border-radius: 15px;
 }
@@ -38,6 +38,12 @@ body {
     border-radius: 5px;
     font-size: 10px;
     padding: 5px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.aut-signup p {
+    margin-top: 40px;
 }
 
 .aut-signup button:hover {
@@ -49,7 +55,6 @@ body {
 
 .aut-create {
     display: block;
-    width: 70%;
     height: 250px;
     background-color:white;
     padding: 20px;
@@ -64,25 +69,37 @@ body {
     font-size: 12px;
 }
 
-.aut-create input {
-    width: 90%;
+.aut-create input::placeholder{
+    color: white;
+    font-size: 11px;
+}
+
+.aut-create-inputs {
+    display: flex; 
+    align-items: center;
+    margin-top: 20px;
+}
+
+.aut-create-inputs img {
+    height: 11px;
+    background-color: #4B88FF;
+    padding: 4px;
+    width: 15px;
+}
+
+.aut-create-inputs input {
+    flex: 1;
     height: 17px;
     background-color: #4B88FF;
     color: white;
     border: none;
 }
 
-.aut-create input::placeholder{
-    color: white;
-    font-size: 11px;
-}
-
 .aut-create-type {
     display: flex;
-    width: 90%;
     text-align: center;
     align-items: center;
-
+    margin-top: 20px;
 }
 
 .aut-create-type input {
@@ -91,19 +108,22 @@ body {
 }
 
 .aut-create-type label {
+    margin-right: 40px;
     height: 11px;
     font-size: 11px;
     color: #4B88FF;
 }
 
 .aut-create button {
+    width: 100%;
     color: white;
-    width: 90%;
     background-color: #4B88FF;
     border-color: white;
     border-radius: 5px;
     font-size: 10px;
     padding: 5px;
+    margin-top: 20px;
+    cursor: pointer;
 }
 
 .aut-create button:hover {
@@ -112,6 +132,7 @@ body {
     border: 2px solid #4B88FF;
     
 }
+
 
 
 
