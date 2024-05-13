@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Ocorrência</title>
+</head>
+
+<body>
+    <!-- {% include "core/partials/head.html" %} -->
+
+    <body>
+
+        <div class="header">
+            <a class="logo" href="">LOGO</a>
+            <a href=""> OCORRÊNCIAS</a>
+            <ul class="menu">
+                <li><a href="#"><i>menu</i></a>
+                    <ul>
+                        <li><i>user</i><a href="">Perfil</a></li>
+                        <li><i>exit</i><a href="">Sair</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="container-aside">
+
+                <aside>
+
+                    <form class="dados" action="">
+                        <fieldset>
+                            <legend>Espécie</legend>
+                            <input type="checkbox" name="peixe-leao" id="peixe-leao" value="peixe-leao" checked>
+                            <label for="peixe-leao">Peixe-Leão</label>
+                            <input type="checkbox" name="coral-sol" id="coral-sol" value="coral-sol">
+                            <label for="coral-sol">Coral-Sol</label>
+                        </fieldset>
+
+                        <label for="profundidade">Profundidade: </label>
+                        <input type="text" id="profundidade" name="profundidade">
+
+                        <label for="temperatura">Temperatura: </label>
+                        <input type="text" id="temperatura" name="temperatura">
+
+                        <label for="quantidade">Quantidade: </label>
+                        <input type="text" id="quantidade" name="quantidade">
+
+                        <label for="data">Data: </label>
+                        <input type="date" id="data" name="data">
+
+                        <label for="cordenadas">Cordenadas: </label>
+                        <input type="text" id="cordenadas" name="cordenadas">
+
+                        <label for="visibilidade">Visibilidade: </label>
+                        <input type="text" id="visibilidade" name="visibilidade">
+                        <span>m</span>
+
+                        <label class="input-imagem" for="imagem"></label>
+                        <input type="file" name="imagem" id="imagem">
+                        <!-- apagar depois, apenas para teste -->
+                        <img src="https://placehold.co/400?text=imagem+Animal&font=roboto" alt="" class="maptemp">
+
+                        <input type="submit" id="cadastrar" name="cadastrar" value="cadastrar">
+                    </form>
+
+
+
+                </aside>
+            </div>
+
+            <div class="containerocorrencia">
+                <div class="map-container">
+
+                    <form action="">
+                        <input type="search" name="pesquisar" id="pesquisar" placeholder="PESQUISAR">
+                        <button>lupa icon</button>
+                    </form>
+                    <!-- apenas para fins de formatação, sem mapa real -->
+                    <img src="https://placehold.co/400?text=Map+Costa&font=roboto" alt="" class="maptemp">
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
+</body>
+
+</html>
