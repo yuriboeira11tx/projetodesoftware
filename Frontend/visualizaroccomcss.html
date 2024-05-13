@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Espécies Invasoras do Litoral Brasileiro</title>
+    <style>
+        /* Reset de estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Azul claro */
+        }
+
+        .header {
+            background-color: #87ceeb; /* Azul claro */
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .container-aside {
+            width: 200px;
+        }
+
+        aside {
+            padding: 10px;
+            background-color: #add8e6; /* Azul claro mais escuro */
+        }
+
+        .filtros input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .filtros input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            background-color: #4682b4; /* Azul mais escuro */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .relatoriogeral input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            background-color: #4169e1; /* Azul real */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .containerocorrencia {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 20px;
+        }
+
+        .ocorrencia {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: calc(100% - 20px);
+            display: flex;
+            background-color: #f0f8ff; /* Azul claro */
+        }
+
+        .maptemp {
+            margin-right: 20px;
+        }
+
+        .test {
+            flex-grow: 1;
+        }
+
+        .ocorrencia ul {
+            list-style-type: none;
+        }
+
+        .ocorrencia form {
+            margin-top: auto;
+        }
+
+       /* Estilo para o botão EXPANDIR */
+.expandir-btn {
+    padding: 8px 16px;
+    background-color: #4169e1; /* Azul real */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    bottom: 10px;
+    right: 10px;
+}
+
+
+        /* Estilo para o formulário de registro de ocorrências */
+        .registro-form {
+            padding: 20px;
+            background-color: #add8e6; /* Azul claro mais escuro */
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .registro-form label {
+            font-weight: bold;
+        }
+
+        .registro-form input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .registro-form input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            background-color: #4682b4; /* Azul mais escuro */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a class="logo" href="">LOGO</a>
+        
+    </div>
+    <div class="container">
+        <div class="container-aside">
+            <aside>
+                <form class="filtros" action="">
+                    <input type="text" id="filtros" name="filtros" placeholder="filtros">
+                    <input type="submit" id="pesquisar" name="pesquisar" value="pesquisar">
+                </form>
+
+                <form class="relatoriogeral" action="">
+                    <input type="submit" name="relatorio" id="relatorio" value="gerar relatorio geral">
+                </form>
+            </aside>
+        </div>
+
+        <div class="containerocorrencia">
+            <!-- {% for ocorrencias in ocorrencia %}  -->
+            <div class="ocorrencia">
+                <img src="https://placehold.co/400?text=Map+Costa&font=roboto" alt="" class="maptemp">
+                <img src="https://placehold.co/400?text=imagem+Animal&font=roboto" alt="" class="maptemp">
+                <!-- {% comment %} <img src={{ocorrencias.imagens}} alt="foto animal"> {% endcomment %} -->
+                 <!-- Formulário de registro de ocorrências -->
+    <div class="registro-form">
+        <h2>Registrar Ocorrência</h2>
+        <form action="">
+            <label for="especie">Espécie:</label><br>
+            <input type="text" id="especie" name="especie"><br>
+            <label for="cidade">Cidade:</label><br>
+            <input type="text" id="cidade" name="cidade"><br>
+            <label for="data">Data:</label><br>
+            <input type="text" id="data" name="data"><br>
+            <label for="mergulhador">Mergulhador:</label><br>
+            <input type="text" id="mergulhador" name="mergulhador"><br>
+            <input type="submit" value="Registrar">
+        </form>
+    </div>
+                <div>
+                    <form action="">
+                        <input type="submit" class="expandir-btn" id="expandir" name="expandir" value="EXPANDIR">
+                    </form>
+                </div>
+            </div>
+            <!-- {% endfor %} -->
+        </div>
+    </div>
+
+   
+
+</body>
+</html>
