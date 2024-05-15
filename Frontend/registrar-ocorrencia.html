@@ -9,7 +9,7 @@
 <body>
     <div class="main-container">
         <div class="top-bar">
-            <img class="img-logo" src="img/icon_lock.png" alt="logo-site">
+            <img class="img-logo" src="img/img_logo.jpg" alt="logo-site">
             <p><a href="visualizar-ocorrencia.html"><strong>OCORRÊNCIAS</strong></a></p>
             <button><img src="img/icon_menu.png" alt="icon_menu"></button>
             <div class="dropdown">
@@ -23,64 +23,61 @@
                 </div>
             </div>
         </div>
-
-
-
-
-        <div class="home-container">
-                <form class="dados" action="">
-                    <fieldset>
-                        <legend>Espécie</legend>
-                        <input type="checkbox" name="peixe-leao" id="peixe-leao" value="peixe-leao" checked>
-                        <label for="peixe-leao">Peixe-Leão</label>
-                        <input type="checkbox" name="coral-sol" id="coral-sol" value="coral-sol">
-                        <label for="coral-sol">Coral-Sol</label>
-                    </fieldset>
-
-                    <label for="profundidade">Profundidade: </label>
+        <div class="content-container">
+            <div class="home-form">
+                <p><strong>Espécie</strong></p>
+                <div class="especie-form">
+                    <input type="radio" name="peixe-leao" id="peixe-leao">
+                    <label for="peixe-leao">Peixe-Leão</label>
+                    <input type="radio" id="coral-sol" name="type-create">
+                    <label for="coral-sol">Coral-Sol</label>  
+                </div>
+                <div class="info-form">
+                    <label for="profundidade"><strong>Profundidade: </strong></label>
                     <input type="text" id="profundidade" name="profundidade">
-
-                    <label for="temperatura">Temperatura: </label>
+                </div>
+                <div class="info-form">
+                    <label for="temperatura"><strong>Temperatura: </strong></label>
                     <input type="text" id="temperatura" name="temperatura">
-
-                    <label for="quantidade">Quantidade: </label>
+                </div>
+                <div class="info-form">
+                    <label for="quantidade"><strong>Quantidade: </strong></label>
                     <input type="text" id="quantidade" name="quantidade">
-
-                    <label for="data">Data: </label>
+                </div>
+                <div class="info-form">
+                    <label for="data"><strong>Data: </strong></label>
                     <input type="date" id="data" name="data">
-
-                    <label for="cordenadas">Cordenadas: </label>
+                </div>
+                <div class="info-form">
+                    <label for="cordenadas"><strong>Cordenadas: </strong></label>
                     <input type="text" id="cordenadas" name="cordenadas">
-
-                    <label for="visibilidade">Visibilidade: </label>
+                </div>
+                <div class="info-form">
+                    <label for="visibilidade"><strong>Visibilidade: </strong></label>
                     <input type="text" id="visibilidade" name="visibilidade">
-                    <span>m</span>
-
-                    <label class="input-imagem" for="imagem"></label>
-                    <input type="file" name="imagem" id="imagem">
-                    <!-- apagar depois, apenas para teste -->
-                    <img src="https://placehold.co/400?text=imagem+Animal&font=roboto" alt="" class="maptemp">
-
-                    <input type="submit" id="cadastrar" name="cadastrar" value="cadastrar">
-                </form>
-
-
-
-            </aside>
-        </div>
-
-        <div class="containerocorrencia">
+                </div>
+                <div class="img-form">
+                    <p><strong>Inserir Imagem:</strong></p>
+                    <label for="img-animal" class="btn-upload">
+                        <img src="https://placehold.co/400?text=imagem+Animal&font=roboto" alt="img-animal">
+                    </label>
+                    <input type="file" name="img-animal" id="img-animal" style="display: none;">
+                </div>
+            </div>
             <div class="map-container">
+                <div class="coord-map">
+                    <input type="text" name="latitude-search" id="latitude-search" placeholder="Latitude">
+                    <input type="text" name="longitude-search" id="longitude-search" placeholder="Longitude">
+                    <button type="submit" class="btn-search">
+                        <img src="img/icon_lupa.png" alt="icon_lupa">
+                    </button>
+                </div>
+                <img class="img-map" src="https://placehold.co/400?text=Map+Costa&font=roboto" alt="" >
+            </div>
+            <div class="bottom-bar">
 
-                <form action="">
-                    <input type="search" name="pesquisar" id="pesquisar" placeholder="PESQUISAR">
-                    <button>lupa icon</button>
-                </form>
-                <!-- apenas para fins de formatação, sem mapa real -->
-                <img src="https://placehold.co/400?text=Map+Costa&font=roboto" alt="" class="maptemp">
             </div>
         </div>
-
     </div>
 </body>
 </html>
