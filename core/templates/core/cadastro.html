@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="aut-container">
+        <div class="aut-signup">
+            <p>Já possui conta?</p>
+            <p>Acesse agora</p>
+            <a href="{% url 'login' %}"><button type="button"><strong>ENTRAR</strong></button></a>
+        </div>
+        <div class="aut-create">
+            <p><strong>CRIE SUA CONTA</strong></p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="aut-create-inputs">
+                    <img src="{% static 'images/icon_user.png' %}" alt="icon_user">
+                    <input type="text" name="nome" placeholder=" Nome">
+                </div>
+                
+                <div class="aut-create-inputs">
+                    <img src="{% static 'images/icon_mail.png' %}" alt="icon_user">
+                    <input type="username" name="username" placeholder=" Username">
+                </div>    
+                
+                <div class="aut-create-inputs">
+                    <img src="{% static 'images/icon_lock.png' %}" alt="icon_user">
+                    <input type="password" name="senha" placeholder=" Senha">
+                </div>
+
+                <button type="submit" class="btn-register"><strong>CADASTRAR</strong></button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

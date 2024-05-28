@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-img">
+            <img src="{% static 'images/user.png' %}" alt="icon_user">
+        </div>      
+        <form method="post">
+            {% csrf_token %}
+            <div class="login-inputs">
+                <img src="{% static 'images/icon_mail.png' %}" alt="icon_user">
+                <input type="username" name="username" placeholder=" Email">
+            </div>
+
+            <div class="login-inputs">
+                <img src="{% static 'images/icon_lock.png' %}" alt="icon_user">
+                <input type="password" name="password" placeholder=" Senha">
+            </div>
+            
+            <div class="login-others">
+                <p><a href="{% url 'cadastro' %}" class="btn-login"><strong>Cadastrar</strong></a></p>
+                <p><a href="recuperar-conta.html" target="_blank">Esqueceu a senha?</a></p>
+            </div>
+            
+            <div class="login-buttons">
+                <button type="submit" class="btn-login"><strong>LOGIN</strong></button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
