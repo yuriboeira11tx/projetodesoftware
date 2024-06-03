@@ -65,11 +65,17 @@
         </div>
     </nav>
 
+    {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+    {% endif %}
+
     {% if user.is_authenticated %}
         <div class="col-md-3">
             <div class="form-container">
                 <h3>Registrar Ocorrência</h3>
-                <form method="post" action="{% url 'register_occurrence' %}" enctype="multipart/form-data">
+                <form method="post" action="{% url 'registro_ocorrencia' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="profundidade" class="form-label">Profundidade (m)</label>

@@ -1,10 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Imagem(models.Model):
-    imagem = models.ImageField(upload_to='imagens/')
-    
-    
 class Ocorrencia(models.Model):
     CORAL_SOL = 'CS'
     PEIXE_LEAO = 'PL'
@@ -22,11 +18,12 @@ class Ocorrencia(models.Model):
     temperatura_agua = models.FloatField()
     quantidade = models.IntegerField()
     data = models.DateField()
-    imagens = models.ManyToManyField(Imagem, blank=True)
     especie = models.CharField(max_length=2, choices=ESPECIE_CHOICES, default=CORAL_SOL)
 
     def __str__(self):
         return f"Coleta de {self.mergulhador.username} em {self.data}"
-    
-    def get_imagens(self):
-        return self.imagens.all()
+
+
+class Imagem(models.Model):
+    ocorrencia = models.ForeignKey(Ocorrencia, on_delete=models.SET_NULL, null=True, blank=True)
+    imagem = models.ImageField(upload_to='imagens/', blank=False, null=False)
