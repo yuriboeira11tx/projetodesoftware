@@ -41,6 +41,11 @@ function success(pos) {
         marker.on('click', function(e) {
             window.location.href = '/ocorrencia/' + ocorrencia.pk + '/';
         });
+
+        map.on('click', function(e) {
+            document.getElementById('latitude').value = e.latlng.lat.toFixed(6);
+            document.getElementById('longitude').value = e.latlng.lng.toFixed(6);
+        });
     });
 }
 

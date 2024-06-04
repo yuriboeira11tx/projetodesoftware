@@ -45,7 +45,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">CostaMap</a>
+            <a class="navbar-brand">CostaMap</a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,18 +58,13 @@
                         {% csrf_token %}
                         <button class="btn btn-outline-danger" type="submit">Logout</button>
                     </form>
+                    <a href="{% url 'minhas_ocorrencias' %}" class="btn btn-primary mt-3">Ver Minhas Ocorrências</a>
                 {% else %}
                     <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
                 {% endif %}
             </div>
         </div>
     </nav>
-
-    {% if error_message %}
-        <div class="alert alert-danger" role="alert">
-            {{ error_message }}
-        </div>
-    {% endif %}
 
     {% if user.is_authenticated %}
         <div class="col-md-3">
