@@ -8,14 +8,14 @@ from django.http import HttpResponse, JsonResponse
 from .models import Imagem, Ocorrencia
 from datetime import datetime
 
-def login_view(request):
+def login_usuario(request):
     if request.method == 'POST':
         email = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('map_view')
+            return redirect('mapa')
         else:
             pass
 
@@ -23,7 +23,7 @@ def login_view(request):
 
 def clogout(request):
     logout(request)
-    return redirect('map_view')
+    return redirect('mapa')
 
 def cadastro(request):
     if request.method == 'POST':

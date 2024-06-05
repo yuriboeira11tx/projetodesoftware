@@ -10,6 +10,6 @@ urlpatterns = [
     path('minhas-ocorrencias/', views.minhas_ocorrencias, name='minhas_ocorrencias'),
     path('ocorrencia/<int:pk>/imagem/<int:imagem_pk>/remover/', views.remover_imagem, name='remover_imagem'),
     path('cadastro/', views.cadastro, name='cadastro'),
-    path('login/', views.login, name='login'),
+    path('login/', views.login_usuario, name='login'),
     path('logout/', views.clogout, name='logout'),
 ]
