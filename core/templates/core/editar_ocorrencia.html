@@ -1,76 +1,101 @@
+{% extends 'core/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Ocorrência</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Editar Ocorrência</h1>
-        <form method="post" action="{% url 'editar_ocorrencia' ocorrencia.pk %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="profundidade">Profundidade (m)</label>
-                <input type="text" class="form-control" id="profundidade" name="profundidade" value="{{ ocorrencia.profundidade }}">
-            </div>
-            <div class="form-group">
-                <label for="latitude">Latitude</label>
-                <input type="text" class="form-control" id="latitude" name="latitude" value="{{ ocorrencia.latitude }}">
-            </div>
-            <div class="form-group">
-                <label for="longitude">Longitude</label>
-                <input type="text" class="form-control" id="longitude" name="longitude" value="{{ ocorrencia.longitude }}">
-            </div>
-            <div class="form-group">
-                <label for="visibilidade">Visibilidade (m)</label>
-                <input type="text" class="form-control" id="visibilidade" name="visibilidade" value="{{ ocorrencia.visibilidade }}">
-            </div>
-            <div class="form-group">
-                <label for="temperatura_agua">Temperatura da Água (°C)</label>
-                <input type="text" class="form-control" id="temperatura_agua" name="temperatura_agua" value="{{ ocorrencia.temperatura_agua }}">
-            </div>
-            <div class="form-group">
-                <label for="quantidade">Quantidade</label>
-                <input type="text" class="form-control" id="quantidade" name="quantidade" value="{{ ocorrencia.quantidade }}">
-            </div>
-            <div class="form-group">
-                <label for="data">Data</label>
-                <input type="date" class="form-control" id="data" name="data" value="{{ ocorrencia.data|date:'Y-m-d' }}">
-            </div>
-            <div class="form-group">
-                <label for="especie">Espécie</label>
-                <select class="form-control" id="especie" name="especie">
-                    <option value="CS" {% if ocorrencia.especie == 'CS' %}selected{% endif %}>Coral Sol</option>
-                    <option value="PL" {% if ocorrencia.especie == 'PL' %}selected{% endif %}>Peixe Leão</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="imagens">Imagens</label>
-                <input type="file" class="form-control" id="imagens" name="imagens" multiple>
-            </div>
-            <button type="submit" class="btn btn-primary">Salvar</button>
-        </form>
+{% block title %}Editar Ocorrência{% endblock %}
 
-        <h2>Imagens:</h2>
-        <div id="imagens">
-            {% for imagem in imagens %}
-                <div class="mb-3">
-                    <img src="{{ imagem.imagem.url }}" alt="Imagem da Ocorrência" class="img-thumbnail">
-                    <a href="{% url 'remover_imagem' ocorrencia.pk imagem.pk %}" class="btn btn-danger">Remover</a>
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-container">
+                        <h3>Editar Ocorrência</h3>
+                        <form method="post" action="{% url 'editar_ocorrencia' ocorrencia.pk %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="profundidade" class="form-label">Profundidade (m)</label>
+                                <input type="number" class="form-control" id="profundidade" name="profundidade" value="{{ ocorrencia.profundidade|floatformat }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="latitude" class="form-label">Latitude</label>
+                                <input type="text" class="form-control" id="latitude" name="latitude" value="{{ ocorrencia.latitude }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="longitude" class="form-label">Longitude</label>
+                                <input type="text" class="form-control" id="longitude" name="longitude" value="{{ ocorrencia.longitude }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="visibilidade" class="form-label">Visibilidade (m)</label>
+                                <input type="number" class="form-control" id="visibilidade" name="visibilidade" value="{{ ocorrencia.visibilidade|floatformat }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="temperatura_agua" class="form-label">Temperatura da Água (°C)</label>
+                                <input type="number" class="form-control" id="temperatura_agua" name="temperatura_agua" value="{{ ocorrencia.temperatura_agua|floatformat }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="quantidade" class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="quantidade" name="quantidade" value="{{ ocorrencia.quantidade }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Data</label>
+                                <input type="date" class="form-control" id="data" name="data" value="{{ ocorrencia.data|date:'Y-m-d' }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="especie" class="form-label">Espécie</label>
+                                <select class="form-select" id="especie" name="especie">
+                                    <option value="CS" {% if ocorrencia.especie == 'CS' %} selected {% endif %}>Coral Sol</option>
+                                    <option value="PL" {% if ocorrencia.especie == 'PL' %} selected {% endif %}>Peixe Leão</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="imagens" class="form-label">Imagens</label>
+                                <input type="file" class="form-control" id="imagens" name="imagens" multiple>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Salvar Alterações</button>
+                        </form>
+                    </div>
                 </div>
-            {% endfor %}
+                <div class="col-md-8">
+                    <div id="mapid" class="map map-home leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="height: 500px; position: relative; outline-style: none;" tabindex="0"></div>
+                </div>
+                <h2>Imagens:</h2>
+                <div class="col-md-8">
+                    <div class="row">
+                        {% for imagem in imagens %}
+                            <div class="col-md-6">
+                                <img src="{{ imagem.imagem.url }}" alt="Imagem da Ocorrência" class="img-thumbnail">
+                                <a href="{% url 'remover_imagem' ocorrencia.pk imagem.pk %}" class="btn btn-danger">Remover</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    {% endif %}
+{% endblock %}
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% block extra_js %}
+    <script>
+        var ocorrenciaLatitude = parseFloat(document.getElementById('latitude').value);
+        var ocorrenciaLongitude = parseFloat(document.getElementById('longitude').value);
+
+        var map = L.map('mapid').setView([ocorrenciaLatitude, ocorrenciaLongitude], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        var currentMarker = null;
+
+        function addMarker(lat, lng) {
+            if (currentMarker) {
+                map.removeLayer(currentMarker);
+            }
+            currentMarker = L.marker([lat, lng]).addTo(map);
+        }
+
+        map.on('click', function (e) {
+            document.getElementById('latitude').value = e.latlng.lat.toFixed(6);
+            document.getElementById('longitude').value = e.latlng.lng.toFixed(6);
+            addMarker(e.latlng.lat, e.latlng.lng);
+        });
+
+        addMarker(ocorrenciaLatitude, ocorrenciaLongitude);
+    </script>
+{% endblock %}

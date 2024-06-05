@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-container">
+                        <h3>Registrar Ocorrência</h3>
+                        <form method="post" action="{% url 'registro_ocorrencia' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="profundidade" class="form-label">Profundidade (m)</label>
+                                <input type="number" class="form-control" id="profundidade" name="profundidade">
+                            </div>
+                            <div class="mb-3">
+                                <label for="latitude" class="form-label">Latitude</label>
+                                <input type="text" class="form-control" id="latitude" name="latitude">
+                            </div>
+                            <div class="mb-3">
+                                <label for="longitude" class="form-label">Longitude</label>
+                                <input type="text" class="form-control" id="longitude" name="longitude">
+                            </div>
+                            <div class="mb-3">
+                                <label for="visibilidade" class="form-label">Visibilidade (m)</label>
+                                <input type="number" class="form-control" id="visibilidade" name="visibilidade">
+                            </div>
+                            <div class="mb-3">
+                                <label for="temperatura_agua" class="form-label">Temperatura da Água (°C)</label>
+                                <input type="number" class="form-control" id="temperatura_agua" name="temperatura_agua">
+                            </div>
+                            <div class="mb-3">
+                                <label for="quantidade" class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="quantidade" name="quantidade">
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Data</label>
+                                <input type="date" class="form-control" id="data" name="data">
+                            </div>
+                            <div class="mb-3">
+                                <label for="especie" class="form-label">Espécie</label>
+                                <select class="form-select" id="especie" name="especie">
+                                    <option value="CS">Coral Sol</option>
+                                    <option value="PL">Peixe Leão</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="imagens" class="form-label">Imagens</label>
+                                <input type="file" class="form-control" id="imagens" name="imagens" multiple>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">REGISTRAR</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div id="mapid" class="map map-home leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="height: 500px; position: relative; outline-style: none;" tabindex="0"></div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        var map = L.map('mapid').setView([-14.2350, -51.9253], 3);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        var currentMarker = null;
+
+        map.on('click', function (e) {
+            document.getElementById('latitude').value = e.latlng.lat.toFixed(6);
+            document.getElementById('longitude').value = e.latlng.lng.toFixed(6);
+
+            if (currentMarker) {
+                map.removeLayer(currentMarker);
+            }
+
+            currentMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+        });
+    </script>
+{% endblock %}

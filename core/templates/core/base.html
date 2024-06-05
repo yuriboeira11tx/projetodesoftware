@@ -10,27 +10,35 @@
     {% block extra_head %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'mapa' %}">CostaMap</a>
+            <a class="navbar-brand" href="{% url 'mapa' %}">
+                <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/2302311-lupa-no-mapa-de-fundo-mundo-simples-design-estilo-ilustracaoial-vetor.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                CostaMap
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'mapa' %}active{% endif %}" href="{% url 'mapa' %}">Mapa</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'mapa' %}active{% endif %}" href="{% url 'mapa' %}">Home</a>
                     </li>
                     {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link {% if request.resolver_match.url_name == 'minhas_ocorrencias' %}active{% endif %}" href="{% url 'minhas_ocorrencias' %}">Minhas Ocorrências</a>
                         </li>
                     {% endif %}
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary" href="{% url 'registro_ocorrencia' %}">Registrar Ocorrência</a>
+                        </li>
+                    {% endif %}
                 </ul>
                 {% if user.is_authenticated %}
                     <form method="post" action="{% url 'logout' %}" class="d-flex ms-auto">
                         {% csrf_token %}
-                        <button class="btn btn-outline-danger" type="submit">Sair</button>
+                        <button class="btn btn-danger" type="submit">Sair</button>
                     </form>
                 {% else %}
                     <a href="{% url 'login' %}" class="btn btn-primary ms-auto">Login</a>
@@ -43,6 +51,7 @@
         {% block content %}{% endblock %}
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     {% block extra_js %}{% endblock %}

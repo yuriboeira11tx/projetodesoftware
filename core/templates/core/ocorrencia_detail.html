@@ -1,30 +1,15 @@
+{% extends 'core/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes da Ocorrência</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/slider.css' %}">
-    <style>
-        /* Adicione estilos adicionais aqui conforme necessário */
-        .carousel-item img {
-            max-height: 400px; /* Altura máxima das imagens do carrossel */
-            margin: auto; /* Centraliza as imagens horizontalmente */
-        }
-    </style>
-</head>
-<body>
+{% block title %}Detalhes{% endblock %}
+
+{% block content %}
     <div class="container mt-5">
-        <a href="{% url 'mapa' %}" class="btn btn-primary btn-back-to-map">Voltar para o Mapa</a>
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
-                        Detalhes da Ocorrência
+                    <div class="card-header bg-dark">
+                        <span class="text-light">Detalhes da Ocorrência</span>
                     </div>
                     <div class="card-body">
                         <p class="card-text"><strong>Mergulhador:</strong> {{ ocorrencia.mergulhador }}</p>
@@ -33,71 +18,87 @@
                         <p class="card-text"><strong>Temperatura da Água:</strong> {{ ocorrencia.temperatura_agua }}°C</p>
                         <p class="card-text"><strong>Quantidade:</strong> {{ ocorrencia.quantidade }}</p>
                         <p class="card-text"><strong>Data:</strong> {{ ocorrencia.data }}</p>
-                        <p class="card-text"><strong>Espécie:</strong> {{ ocorrencia.especie }}</p>
+                        <p class="card-text"><strong>Latitude:</strong><span id="latitude">{{ ocorrencia.latitude }}</span></p>
+                        <p class="card-text"><strong>Longitude:</strong><span id="longitude"> {{ ocorrencia.longitude }}</span></p>
+                        
+                        {% if ocorrencia.especie == "PL" %}
+                            <p class="card-text"><strong>Espécie:</strong> Peixe Leão</p>
+                        {% else %}
+                            <p class="card-text"><strong>Espécie:</strong> Coral Sol</p>
+                        {% endif %}
                     </div>
                 </div>
+            </div>
+
+            <div class="col-md-6">
+                <div id="mapid" class="map map-home leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="height: 500px; position: relative; outline-style: none;" tabindex="0"></div>
             </div>
             
-            <div class="col-md-6">
-                <h2>Imagens:</h2>
-                <div id="carouselControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        {% for imagem in imagens %}
-                            <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                                <img class="d-block w-100" src="{{ imagem.imagem.url }}" alt="Imagem da Ocorrência" data-toggle="modal" data-target="#imagemModal{{ forloop.counter }}">
-                            </div>
-
-                            <div class="modal fade" id="imagemModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="imagemModal{{ forloop.counter }}Label" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="imagemModal{{ forloop.counter }}Label">Imagem {{ forloop.counter }}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <img class="img-fluid" src="{{ imagem.imagem.url }}" alt="Imagem da Ocorrência">
+            {% if imagens|length > 0 %}
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body bg-dark">
+                            <h5 class="card-title text-light">Imagens</h2></h5>
+                        </div>
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-inner">
+                                {% for imagem in imagens %}
+                                    <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                                        <img class="d-block w-100" src="{{ imagem.imagem.url }}" alt="Imagem da Ocorrência" data-toggle="modal" data-target="#imagemModal{{ forloop.counter }}">
+                                    </div>
+        
+                                    <div class="modal fade" id="imagemModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="imagemModal{{ forloop.counter }}Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="imagemModal{{ forloop.counter }}Label">Imagem {{ forloop.counter }}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <img class="img-fluid" src="{{ imagem.imagem.url }}" alt="Imagem da Ocorrência">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Anterior</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Próximo</span>
-                    </a>
                 </div>
-            </div>
+            {% else %}
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body bg-dark">
+                            <h5 class="card-title text-light">Imagens</h2></h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Nenhuma imagem disponível.</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
+{% endblock %}
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% block extra_js %}
     <script>
-        $('#carouselControls').on('slide.bs.carousel', function (e) {
-            var $e = $(e.relatedTarget);
-            var idx = $e.index();
-            var itemsPerSlide = 4;
-            var totalItems = $('.carousel-item').length;
+        var ocorrenciaLatitude = parseFloat(document.getElementById('latitude').innerText);
+        var ocorrenciaLongitude = parseFloat(document.getElementById('longitude').innerText);
 
-            if (idx >= totalItems-(itemsPerSlide-1)) {
-                var it = itemsPerSlide - (totalItems - idx);
-                for (var i=0; i<it; i++) {
-                    if (e.direction == "left") {
-                        $('.carousel-item').eq(i).appendTo('.carousel-inner');
-                    } else {
-                        $('.carousel-item').eq(0).appendTo('.carousel-inner');
-                    }
-                }
-            }
-        });
+        var map = L.map('mapid').setView([ocorrenciaLatitude, ocorrenciaLongitude], 7);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
+        
+        L.marker([ocorrenciaLatitude, ocorrenciaLongitude]).addTo(map);
     </script>
-</body>
-</html>
+{% endblock %}

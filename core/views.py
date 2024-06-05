@@ -168,4 +168,4 @@ def registro_ocorrencia(request):
             ocorrencias_json = serialize('json', ocorrencias, use_natural_foreign_keys=True)
             return render(request, 'core/map.html', {'ocorrencias': ocorrencias_json, 'error_message': error_message})
 
-    return render(request, 'core/map.html')
+    return render(request, 'core/registro_ocorrencia.html')

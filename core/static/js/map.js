@@ -3,7 +3,7 @@ function formatDate(dateString) {
     return dateParts[2] + "/" + dateParts[1] + "/" + dateParts[0];
 }
 
-var map = L.map('mapid').setView([-14.2350, -51.9253], 2.5);
+var map = L.map('mapid').setView([-14.2350, -51.9253], 3);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 

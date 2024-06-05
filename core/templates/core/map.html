@@ -1,67 +1,54 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %}- Home{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-    {% comment %} {% if user.is_authenticated %}
-        <div class="col-md-3">
-            <div class="form-container">
-                <h3>Registrar Ocorrência</h3>
-                <form method="post" action="{% url 'registro_ocorrencia' %}" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="profundidade" class="form-label">Profundidade (m)</label>
-                        <input type="number" class="form-control" id="profundidade" name="profundidade">
-                    </div>
-                    <div class="mb-3">
-                        <label for="latitude" class="form-label">Latitude</label>
-                        <input type="text" class="form-control" id="latitude" name="latitude">
-                    </div>
-                    <div class="mb-3">
-                        <label for="longitude" class="form-label">Longitude</label>
-                        <input type="text" class="form-control" id="longitude" name="longitude">
-                    </div>
-                    <div class="mb-3">
-                        <label for="visibilidade" class="form-label">Visibilidade (m)</label>
-                        <input type="number" class="form-control" id="visibilidade" name="visibilidade">
-                    </div>
-                    <div class="mb-3">
-                        <label for="temperatura_agua" class="form-label">Temperatura da Água (°C)</label>
-                        <input type="number" class="form-control" id="temperatura_agua" name="temperatura_agua">
-                    </div>
-                    <div class="mb-3">
-                        <label for="quantidade" class="form-label">Quantidade</label>
-                        <input type="number" class="form-control" id="quantidade" name="quantidade">
-                    </div>
-                    <div class="mb-3">
-                        <label for="data" class="form-label">Data</label>
-                        <input type="date" class="form-control" id="data" name="data">
-                    </div>
-                    <div class="mb-3">
-                        <label for="especie" class="form-label">Espécie</label>
-                        <select class="form-select" id="especie" name="especie">
-                            <option value="CS">Coral Sol</option>
-                            <option value="PL">Peixe Leão</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="imagens" class="form-label">Imagens</label>
-                        <input type="file" class="form-control" id="imagens" name="imagens" multiple>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary mt-3">Registrar</button>
-                </form>
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Peixe Leão e Coral Sol</h1>
+            <p class="lead text-muted">Seja bem-vindo ao <strong>CostaMap</strong>, um sistema de registros de ocorrência dessas espécies invasoras na <strong>costa brasileira</strong></p>
+            <p>
+                <a target="_blank" href="https://www.crbio05.gov.br/site/noticias-detalhe/numero-crescente-de-especies-exoticas-no-litoral-brasileiro-acende-sinal-de-alerta-entre-biologos-e-autoridades/4822#:~:text=Trata%2Dse%20do%20cnid%C3%A1rio%20do,litoral%20do%20Nordeste%E2%80%9D%2C%20alertou." class="btn btn-primary my-2">+Mais Informações</a>
+            </p>
+        </div>
+    </section>
+    
+    <div id="mapid" class="map map-home leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="height: 400px; position: relative; outline-style: none;" tabindex="0"></div>
+    
+    {% comment %} <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Extended_tentacles_of_orange_cup_coral.JPG" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Coral Sol</h5>
+                <p>O coral-sol é uma espécie exótica invasora que ameaça a biodiversidade marinha brasileira</p>
+            </div>
+            </div>
+            <div class="carousel-item">
+            <img src="https://conteudo.imguol.com.br/c/noticias/aa/2023/03/03/peixe-leao-cacado-com-um-arpao-no-litoral-do-ceara-1677848944892_v2_900x506.jpg.webp" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Second slide label</h5>
+                <p>Venenoso e voraz: por que o peixe-leão é uma ameaça ao litoral brasileiro</p>
+            </div>
             </div>
         </div>
-    {% endif %} {% endcomment %}
-    
-    <div id="mapid" class="map map-home leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="height: 300px; margin-top: 50px; position: relative; outline-style: none;" tabindex="0">
-        
-    </div>
-    
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div> {% endcomment %}
+
     <div id="ocorrencias" style="display: none;">{{ ocorrencias|safe }}</div>
-{% endblock %}
+    {% endblock %}
 
 {% block extra_js %}
     <script src="{% static 'js/map.js' %}"></script>
